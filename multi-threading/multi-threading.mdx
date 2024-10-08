@@ -1,0 +1,24 @@
+**Node.js Multithreading** allows you to handle CPU-intensive tasks (like image processing, data parsing, or encryption) without blocking the main thread. Since Node.js is single-threaded by default, it uses the **Worker Threads** module to offload such tasks to separate threads.
+
+### Key Points:
+
+- **Worker Threads**: Introduced in Node.js v10.5, they enable parallel execution of JavaScript in multiple threads.
+- **Use Case**: Ideal for CPU-bound tasks (e.g., image resizing, file compression) to keep the main event loop responsive.
+- **Example**: Offload image processing in a worker thread while continuing to serve other requests in the main thread.
+- **Benefits**: Improves performance, prevents blocking, and makes better use of multi-core systems.
+
+---
+
+### Single-Threaded Node.js Architecture:
+
+- Node.js operates on a **single thread** using an **event loop**.
+- It is designed for handling **I/O-bound** tasks like reading files, network requests, or database interactions asynchronously.
+- The **event loop** handles incoming requests and delegates heavy operations (e.g., file I/O, network requests) to the system, allowing it to process multiple tasks without waiting for them to complete.
+- However, **CPU-bound** tasks (e.g., data processing, image resizing) can block the event loop, making the server unresponsive until the task finishes.
+
+### Multi-Threaded Node.js Architecture (with Worker Threads):
+
+- In **multi-threaded Node.js**, **Worker Threads** are introduced to handle **CPU-bound** operations without blocking the main thread.
+- The **main thread** still handles incoming I/O requests, but for CPU-intensive tasks, it creates **separate worker threads** to offload the heavy lifting.
+- Each worker thread operates independently, processing tasks in parallel while keeping the **main event loop** responsive to new requests.
+- This architecture helps in improving **performance and scalability** by utilizing **multi-core CPUs** efficiently.
